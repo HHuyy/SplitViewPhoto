@@ -18,27 +18,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mcL-MT-uMk">
-                                <rect key="frame" x="16" y="64" width="343" height="603"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3dT-Xn-jzz">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="c6Q-MN-ALM">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="ZAa-R9-fnd" appends="YES" id="Yqt-9G-Sp0"/>
+                                        </connections>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="c6Q-MN-ALM" firstAttribute="centerY" secondItem="3dT-Xn-jzz" secondAttribute="centerY" id="8VS-OF-0M4"/>
+                                    <constraint firstAttribute="bottom" secondItem="c6Q-MN-ALM" secondAttribute="bottom" id="dgi-gE-7M3"/>
+                                    <constraint firstItem="c6Q-MN-ALM" firstAttribute="leading" secondItem="3dT-Xn-jzz" secondAttribute="leading" id="f9x-yc-cRd"/>
+                                    <constraint firstAttribute="trailing" secondItem="c6Q-MN-ALM" secondAttribute="trailing" id="lBf-Bq-eno"/>
+                                    <constraint firstItem="c6Q-MN-ALM" firstAttribute="centerX" secondItem="3dT-Xn-jzz" secondAttribute="centerX" id="pCp-j4-4K2"/>
+                                    <constraint firstItem="c6Q-MN-ALM" firstAttribute="top" secondItem="3dT-Xn-jzz" secondAttribute="top" id="uid-hP-yCg"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3By-Ip-gNL" firstAttribute="bottom" secondItem="mcL-MT-uMk" secondAttribute="bottom" id="6md-v2-cw0"/>
-                            <constraint firstItem="mcL-MT-uMk" firstAttribute="leading" secondItem="3By-Ip-gNL" secondAttribute="leading" constant="16" id="WMc-sm-rtd"/>
-                            <constraint firstItem="mcL-MT-uMk" firstAttribute="top" secondItem="3By-Ip-gNL" secondAttribute="top" id="nLI-ho-oFL"/>
-                            <constraint firstItem="3By-Ip-gNL" firstAttribute="trailing" secondItem="mcL-MT-uMk" secondAttribute="trailing" constant="16" id="tFJ-lh-MkX"/>
+                            <constraint firstItem="3By-Ip-gNL" firstAttribute="bottom" secondItem="3dT-Xn-jzz" secondAttribute="bottom" id="9QL-Mt-zD9"/>
+                            <constraint firstItem="3dT-Xn-jzz" firstAttribute="top" secondItem="3By-Ip-gNL" secondAttribute="top" id="9xV-ha-vHq"/>
+                            <constraint firstItem="3By-Ip-gNL" firstAttribute="trailing" secondItem="3dT-Xn-jzz" secondAttribute="trailing" id="Ng7-aD-h2F"/>
+                            <constraint firstItem="3dT-Xn-jzz" firstAttribute="leading" secondItem="3By-Ip-gNL" secondAttribute="leading" id="PMI-Xi-ZyF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3By-Ip-gNL"/>
                     </view>
                     <navigationItem key="navigationItem" id="PEr-Jb-vvB"/>
                     <connections>
-                        <outlet property="detailImage" destination="mcL-MT-uMk" id="5vY-sz-iI9"/>
+                        <outlet property="bottom" destination="dgi-gE-7M3" id="sam-Wv-enj"/>
+                        <outlet property="detailImage" destination="c6Q-MN-ALM" id="lXu-Ds-75R"/>
+                        <outlet property="leading" destination="f9x-yc-cRd" id="xhG-sZ-Spd"/>
+                        <outlet property="scrollView" destination="3dT-Xn-jzz" id="QBS-Rg-BFU"/>
+                        <outlet property="top" destination="uid-hP-yCg" id="CCq-tR-Bh2"/>
+                        <outlet property="trailing" destination="lBf-Bq-eno" id="NHY-TS-3Oh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="764-ZH-0Ac" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="ZAa-R9-fnd">
+                    <connections>
+                        <action selector="handlePinch:" destination="coN-lT-Qsr" id="GW4-FV-zhv"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1198" y="311"/>
+            <point key="canvasLocation" x="1197.5999999999999" y="310.79460269865069"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="DXg-aH-o36">

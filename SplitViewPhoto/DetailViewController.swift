@@ -10,7 +10,13 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var detailImage: UIImageView!
+    @IBOutlet weak var top: NSLayoutConstraint!
+    @IBOutlet weak var trailing: NSLayoutConstraint!
+    @IBOutlet weak var leading: NSLayoutConstraint!
+    @IBOutlet weak var bottom: NSLayoutConstraint!
+    
     var pokemon: Pokemon? {
         didSet {
             refreshUI()
@@ -21,6 +27,29 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "pokedex2")!)
     }
+    
+    fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
+        let widthScale = size.width / detailImage.bounds.width
+        let heightScale = size.height / detailImage.bounds.height
+        let minScale = min(widthScale, heightScale)
+        
+        
+        scrollView.minimumZoomScale = minScale
+        scrollView.zoomScale = minScale
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateMinZoomScaleForSize(view.bounds.size)
+    }
+    
+    @IBAction func handlePinch(recognizer: UIPinchGestureRecognizer) {
+        if let view = recognizer.view {
+            view.transform = view.transform.scaledBy(x: recognizer.scale, y: recognizer.scale)
+            recognizer.scale = 1
+        }
+    }
+    
     
     func refreshUI() {
         loadViewIfNeeded()
@@ -33,9 +62,15 @@ class DetailViewController: UIViewController {
 
 }
 
-extension DetailViewController: PokemonSelectionDelegate {
+extension DetailViewController: PokemonSelectionDelegate, UIScrollViewDelegate {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return detailImage
+    }
+    
     func PokemonSelected(_ newPokemon: Pokemon) {
         pokemon = newPokemon   
     }
 }
+
+
 
